@@ -6,8 +6,14 @@
 
   "description": "Blacklist extension",
 
+  "icons": {
+    "16": "icons/icon_small.png",
+    "48": "icons/icon_medium.png",
+    "128": "icons/icon_large.png"
+  },
+
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icons/icon.png",
     "default_popup": "about.html",
     "default_title": "Mute"
   },
