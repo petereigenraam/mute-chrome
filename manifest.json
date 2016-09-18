@@ -18,14 +18,10 @@
     "default_title": "Mute"
   },
 
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": ["mute.js"]
-    }
-  ],
+  "background": {
+    "scripts": ["mute.js"],
+    "persistent": true
+  },
 
   "web_accessible_resources": [
     "blocked.html"
@@ -33,6 +29,12 @@
 
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
+    "background",
+    "cookies",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "https://ajax.googleapis.com/",
+    "<all_urls>"
   ]
 }

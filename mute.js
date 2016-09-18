@@ -1,18 +1,21 @@
-var host = window.location.host;
+chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+        var blockedUrls = [
+            'www.facebook.com',
+            'www.youtube.com',
+            'www.geenstijl.nl',
+            'www.reddit.com'
+        ];
 
-checkUrl(host);
+        rv = false;
+        for (var i=0; i < blockedUrls.length; i += 1) {
+            if (details.url.indexOf(blockedUrls[i]) !== -1) {
+                rv = true;
+            }
+        }
 
-function checkUrl(host) {
-    var blockedUrls = [
-        'www.facebook.com',
-        'youtube.com',
-        'www.geenstijl.nl',
-    ];
-
-    if (blockedUrls.indexOf(host) !== -1) {
-        window.location = chrome.extension.getURL("blocked.html");
-        console.log('blocked ' + host);
-    } else {
-        console.log('allowed ' + host);
-    }
-}
+        return { cancel: rv };
+    },
+    {urls: ["<all_urls>"]},
+    ["blocking"]
+);
